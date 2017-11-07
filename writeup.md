@@ -31,9 +31,9 @@ My pipeline consist of 3 steps. The following figures show the output of the ste
 2. Detect lines from the edges using cv2.HoughlineP
 3. Detect the lanes by
 
-    3.1 Separate lines into groups of positive slop and negyative slop for the left and right lanes
+    3.1 Separate lines into groups of positive slop and negative slop for the left and right lanes
 
-    3.2 Transform the lines in each group to polar representation
+    3.2 Transform the lines in each group to polar representation (i.e. $r = xcos(\theta) + ysin(\theta)$)
 
     3.3 Output the median of all lines in the polar representation as the line representation of the lane.
 
@@ -41,4 +41,4 @@ My pipeline consist of 3 steps. The following figures show the output of the ste
 
 My lane detection assumes that the majority of lines in a group belongs to the lane. Therefore, if there are too much irrelevant lines in a group, the median of them will not represent the correct lane. In the "challenge.mp4" test video, my method failed because there are too much irrelevant edges.
 
-Another The lanes detected from the test video are a bit shaky. This is mainly because outliers can still affect the median of the lines. A robust but more complex way to aggregate the detected lines would be RANSAC line fitting.
+Another The lanes detected from the test video are a bit shaky. This is mainly because outliers can still affect the median of the lines. Even without outliers, the median can switch between the left edge or right edge of the lane. A robust but more complex way to aggregate the detected lines would be RANSAC line fitting.
